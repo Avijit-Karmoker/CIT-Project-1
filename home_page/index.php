@@ -277,7 +277,7 @@ $projects = mysqli_query($db_connect, $project_get_query);
                 </div>
                 <div class="row">
                     <?php foreach ($db_services as $service) : ?>
-                    <?php if ($service['status'] == 'Active') : ?>
+                    <?php if ($service['status'] == 'active') : ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
                             <i class="<?= $service['icon'] ?>"></i>
@@ -314,7 +314,7 @@ $projects = mysqli_query($db_connect, $project_get_query);
                             <div class="speaker-overlay">
                                 <span><?= $project['project_category'] ?></span>
                                 <h4><a href="portfolio-single.html"><?= $project['project_name'] ?></a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
+                                <a href="portfolio-single.php" class="arrow-btn">More information <span></span></a>
                             </div>
                         </div>
                     </div>

@@ -1,12 +1,16 @@
 <?php
-print_r($_POST);
-print_r($_GET);
+require_once('./include/db.php');
+// print_r($_POST);
 
-// $service_name = $_POST['service_name'];
-// $service_details = $_POST['service_details'];
-// $service_icon = $_POST['service_icon'];
-// $status = $_POST['status'];
+$service_name = $_POST['new_service_name'];
+$service_details = $_POST['new_service_details'];
+$service_icon = $_POST['new_service_icon'];
+$id = $_POST['service_id'];
+$status = $_POST['new_status'];
+$edit_service_submit = $_POST['edit_service_submit'];
 
-// if (isset($service_update_submit)) {
-//     $db_service_update = "UPDATE services SET service_name = '[value-2]', service_details ='[value-3]', icon = '[value-4]', status ='[value-5]', WHERE id = $id";
-// }
+if (isset($edit_service_submit)) {
+    $db_service_update = "UPDATE services SET service_name = '$service_name', service_details ='$service_details', icon = '$service_icon', status ='$status' WHERE id = $id";
+    mysqli_query($db_connect, $db_service_update);
+    echo "done";
+}

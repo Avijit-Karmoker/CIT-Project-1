@@ -4,7 +4,7 @@ session_start();
 $service_name = $_POST['service_name'];
 $service_details = $_POST['service_details'];
 $service_icon = $_POST['service_icon'];
-$status = ucfirst($_POST['status']);
+$status = $_POST['status'];
 $db_connect = mysqli_connect('localhost', 'root', '', 'hw_7');
 
 if (isset($_POST['service_submit'])) {
