@@ -123,6 +123,9 @@ $profile_photo_name = mysqli_fetch_array($db_profile_photo_name)['profile_photo_
                         <a href="./add_recent_project.php"><i class="material-icons-two-tone">work</i>Add Recent
                             Work</a>
                     </li>
+                    <li class="<?= (end($page_name) == 'add_skills.php') ? 'active-page' : '' ?>">
+                        <a href="./add_skills.php"><i class="material-icons-two-tone">rate_review</i>Add Skills</a>
+                    </li>
                     <li>
                         <a href="widgets.html"><i class="material-icons-two-tone">widgets</i>Widgets</a>
                     </li>
