@@ -24,6 +24,7 @@ $index = 1;
                                 <th>Project Category</th>
                                 <th>Recent Project Name</th>
                                 <th>Project Image</th>
+                                <th>Project details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +38,7 @@ $index = 1;
                                         src="../uploads/project_photo/<?= $project['project_image'] ?>"
                                         alt="<?= $project['project_image'] ?>">
                                 </td>
+                                <td><?= $project['project_details'] ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -70,6 +72,9 @@ $index = 1;
 
                         <label class="form-label my-3">Project Image</label>
                         <input type="file" name="project_image" class="form-control mb-2">
+
+                        <label class="form-label my-3">Project details</label>
+                        <textarea type="text" name="project_details" class="form-control mb-2" rows="4"></textarea>
 
                         <button type="submit" class="btn btn-success mt-3" name="recent_work_submit">Submit</button>
                     </div>

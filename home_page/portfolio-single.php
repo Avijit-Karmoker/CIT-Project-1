@@ -1,3 +1,28 @@
+<?php
+require_once("../dashboard/include/db.php");
+
+$id = $_GET["id"];
+$db_projects_query = "SELECT * FROM `recent_projects` WHERE id = $id";
+$db_project = mysqli_query($db_connect, $db_projects_query);
+$project = mysqli_fetch_assoc($db_project);
+
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    $link = "https";
+} else $link = "http";
+
+// Here append the common URL characters.
+$link .= "://";
+
+// Append the host(domain name, ip) to the URL.
+$link .= $_SERVER['HTTP_HOST'];
+
+// Append the requested resource location to the URL
+$link .= $_SERVER['REQUEST_URI'];
+
+// Print the link
+$link;
+
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -50,9 +75,9 @@
                     <div class="col-xl-12">
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
-                                <a href="index.html" class="navbar-brand logo-sticky-none"><img
+                                <a href="index.php" class="navbar-brand logo-sticky-none"><img
                                         src="assets/img/logo/logo.png" alt="Logo"></a>
-                                <a href="index.html" class="navbar-brand s-logo-none"><img
+                                <a href="index.php" class="navbar-brand s-logo-none"><img
                                         src="assets/img/logo/s_logo.png" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                                     data-target="#navbarNav">
@@ -62,7 +87,7 @@
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#about">about</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#service">service</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#portfolio">portfolio</a></li>
@@ -141,66 +166,20 @@
                     <div class="col-xl-9 col-lg-10">
                         <div class="single-blog-list">
                             <div class="blog-list-thumb mb-35">
-                                <img src="assets/img/images/portfolio_details.jpg" alt="img">
+                                <img src="../uploads/project_photo/<?= $project['project_image'] ?>" alt="img">
                             </div>
                             <div class="blog-list-content blog-details-content portfolio-details-content">
-                                <h2>Consectetur neque elit quis nunc cras elementum</h2>
-                                <p>Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae
-                                    condimem
-                                    egestliberos dolor auctor
-                                    tellus, eu consectetur neque elit quis nunc. Cras elementum pretiumi Nullam justo
-                                    efficitur,
-                                    trist ligula pellentesque
-                                    ipsum. Quisque thsr augue ipsum, vehicula tellus maximus. Was popularised in the
-                                    1960s withs
-                                    the release of Letraset
-                                    sheets containing Lorem Ipsum passags, and more recently with desktop publishing
-                                    software
-                                    like Aldus PageMaker including
-                                    versions.</p>
-                                <p>Rxpress dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae
-                                    condimem
-                                    egestlibers dolosr auctor
-                                    tellus, eu consectetur neque elit quis nunc. Cras elementum pretiumi Nullam justo
-                                    efficitur,
-                                    trist ligula pellentesque
-                                    ipsum. Quisque thsr augue ipsum, vehicula tellus maximus.</p>
-                                <p>Vehicula dolor amet consectetur adipiscing elit. Cras sollicitudin, tellus vitae
-                                    condimem egestliberos dolor auctor
-                                    tellus, eu consectetur neque elit quis nunc. Cras elementum pretiumi Nullam justo
-                                    efficitur, trist ligula pellentesque
-                                    ipsum. Quisque thsr augue ipsum, vehicula tellus maximus.Express dolor sit amet,
-                                    consectetur adipiscing elit. Cras
-                                    sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur
-                                    neque elit quis nunc.</p>
-
-                                <p>Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae
-                                    condimem
-                                    egestliberos dolor auctor
-                                    tellus, eu consectetur neque elit quis nunc. Cras elementum pretiumi Nullam justo
-                                    efficitur,
-                                    trist ligula pellentesque
-                                    ipsum. Quisque thsr augue ipsum, vehicula tellus maximus. Was popularised in the
-                                    1960s withs
-                                    the release of Letraset
-                                    sheets containing Lorem Ipsum passags, and more recently with desktop publishing
-                                    software
-                                    like Aldus PageMaker including
-                                    versions.</p>
-                                <p>Vehicula dolor amet consectetur adipiscing elit. Cras sollicitudin, tellus vitae
-                                    condimem
-                                    egestliberos dolor auctor
-                                    tellus, eu consectetur neque elit quis nunc. Cras elementum pretiumi Nullam justo
-                                    efficitur,
-                                    trist ligula pellentesque
-                                    ipsum. Quisque thsr augue ipsum, vehicula tellus maximus.</p>
+                                <h2><?= $project['project_name'] ?></h2>
+                                <p><?= $project['project_details'] ?></p>
                                 <div class="blog-list-meta">
                                     <ul>
                                         <li class="blog-post-date">
                                             <h3>Share On</h3>
                                         </li>
                                         <li class="blog-post-share">
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                            <a target="_blank"
+                                                href="http://www.facebook.com/sharer/sharer.php?u=<?= $link ?>&t=<?= $project['project_name'] ?>"><i
+                                                    class="fab fa-facebook-f"></i></a>
                                             <a href="#"><i class="fab fa-twitter"></i></a>
                                             <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                         </li>
@@ -221,7 +200,7 @@
                                                 egestliberos dolor auctor
                                                 tellus.</p>
                                             <div class="post-avatar-social mt-15">
-                                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                                <a target="_blank" href="#"><i class="fab fa-facebook-f"></i></a>
                                                 <a href="#"><i class="fab fa-twitter"></i></a>
                                                 <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                             </div>

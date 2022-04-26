@@ -1,13 +1,15 @@
 <?php
 session_start();
-$project_category = $_POST['project_category'];
-$project_name = $_POST['project_name'];
 $db_connect = mysqli_connect('localhost', 'root', '', 'hw_7');
 
-print_r($_FILES);
+$project_category = $_POST['project_category'];
+$project_name = $_POST['project_name'];
+$project_details = $_POST['project_details'];
+// echo $id = time() . rand(1, 1000);
+
 if (isset($_POST['recent_work_submit'])) {
     //insert project_name & project_category into database
-    $insert_projects_into_db = "INSERT INTO recent_projects (project_category, project_name) VALUES ('$project_category','$project_name')";
+    $insert_projects_into_db = "INSERT INTO recent_projects (project_category, project_name, project_details) VALUES ('$project_category','$project_name', '$project_details')";
     mysqli_query($db_connect, $insert_projects_into_db);
     $id = mysqli_insert_id($db_connect);
 

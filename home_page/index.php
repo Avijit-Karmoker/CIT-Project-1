@@ -20,6 +20,9 @@ $projects = mysqli_query($db_connect, $project_get_query);
 $db_skills_query = "SELECT * FROM skills";
 $skills = mysqli_query($db_connect, $db_skills_query);
 
+$db_reviews_query = "SELECT * FROM customer_reviews";
+$reviews = mysqli_query($db_connect, $db_reviews_query);
+
 ?>
 
 <!doctype html>
@@ -74,9 +77,9 @@ $skills = mysqli_query($db_connect, $db_skills_query);
                     <div class="col-xl-12">
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
-                                <a href="index.html" class="navbar-brand logo-sticky-none"><img
+                                <a href="index.php" class="navbar-brand logo-sticky-none"><img
                                         src="assets/img/logo/logo.png" alt="Logo"></a>
-                                <a href="index.html" class="navbar-brand s-logo-none"><img
+                                <a href="index.php" class="navbar-brand s-logo-none"><img
                                         src="assets/img/logo/s_logo.png" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                                     data-target="#navbarNav">
@@ -86,7 +89,7 @@ $skills = mysqli_query($db_connect, $db_skills_query);
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active"><a class="nav-link" href="#home">Home</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#about">about</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#service">service</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#portfolio">portfolio</a></li>
@@ -274,7 +277,8 @@ $skills = mysqli_query($db_connect, $db_skills_query);
                             <div class="speaker-overlay">
                                 <span><?= $project['project_category'] ?></span>
                                 <h4><a href="portfolio-single.html"><?= $project['project_name'] ?></a></h4>
-                                <a href="portfolio-single.php" class="arrow-btn">More information <span></span></a>
+                                <a href="portfolio-single.php?id=<?= $project['id'] ?>" class="arrow-btn">More
+                                    information <span></span></a>
                             </div>
                         </div>
                     </div>
@@ -323,34 +327,21 @@ $skills = mysqli_query($db_connect, $db_skills_query);
                 <div class="row justify-content-center">
                     <div class="col-xl-9 col-lg-10">
                         <div class="testimonial-active">
+                            <?php foreach ($reviews as $review) : ?>
                             <div class="single-testimonial text-center">
-                                <div class="testi-avatar">
-                                    <img src="assets/img/images/testi_avatar.png" alt="img">
+                                <div class="testi-avatar m-auto" style="width: 100px; height: 140px;">
+                                    <img class="w-100" style="height: 100px; border-radius: 50px;"
+                                        src="../uploads/customer_photo/<?= $review['customer_image'] ?>" alt="img">
                                 </div>
                                 <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence
-                                        of an action. The action can causd user interaction such as a button click, or
-                                        it can result <span>”</span></h4>
+                                    <h4><span>“</span> <?= $review['review_details'] ?> <span>”</span></h4>
                                     <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
+                                        <h5><?= $review['customer_name'] ?></h5>
+                                        <span><?= $review['customer_position'] ?></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="single-testimonial text-center">
-                                <div class="testi-avatar">
-                                    <img src="assets/img/images/testi_avatar.png" alt="img">
-                                </div>
-                                <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence
-                                        of an action. The action can causd user interaction such as a button click, or
-                                        it can result <span>”</span></h4>
-                                    <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

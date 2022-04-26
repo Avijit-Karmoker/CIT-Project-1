@@ -54,19 +54,19 @@ $skills = mysqli_query($db_connect, $db_skills_query);
             <div class="example-container" style="background: #fff; border: none !important; padding: 30px;">
 
                 <!-- success sms -->
-                <!-- <?php
-                        if (isset($_SESSION['service_add_success_sms'])) :
-                        ?>
+                <?php
+                if (isset($_SESSION['success_sms'])) :
+                ?>
                 <div class="alert alert-custom alert-indicator-top indicator-success" role="alert">
                     <div class="alert-content">
                         <span class="alert-title">Success!</span>
-                        <span class="alert-text"><?= ($_SESSION['service_add_success_sms']) ?></span>
+                        <span class="alert-text"><?= ($_SESSION['success_sms']) ?></span>
                     </div>
                 </div>
                 <?php
-                            unset($_SESSION["service_add_success_sms"]);
-                        endif;
-                ?> -->
+                    unset($_SESSION["success_sms"]);
+                endif;
+                ?>
 
                 <form action="add_skill_post.php" method="POST">
                     <div class="example-content">
