@@ -3,7 +3,7 @@ require_once("./include/db.php");
 // print_r($_POST);
 
 $skill_name = $_POST['skill_name'];
-$skill_details = $_POST['skill_details'];
+$skill_details = htmlentities($_POST['skill_details'], ENT_QUOTES);
 $skill_percentage = $_POST['skill_percentage'];
 $skill_submit = $_POST['skill_submit'];
 

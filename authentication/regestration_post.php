@@ -124,22 +124,22 @@ if ($flag) {
         $insert_data = "INSERT INTO sign_in_users (name, email, password, phone_no) VALUES ('$name','$email','$encrypted_passowrd', '$phone_no')";
         mysqli_query($db_connect, $insert_data);
         // sms send start
-        $url = "http://66.45.237.70/api.php";
-        $number = $phone_no;
-        $text = "Shama kamon aco?";
-        $data = array(
-            'username' => "01834833973",
-            'password' => "TE47RSDM",
-            'number' => "$number",
-            'message' => "$text"
-        );
-        $ch = curl_init(); // Initialize cURL
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $smsresult = curl_exec($ch);
-        $p = explode("|", $smsresult);
-        $sendstatus = $p[0];
+        // $url = "http://66.45.237.70/api.php";
+        // $number = $phone_no;
+        // $text = "Shama kamon aco?";
+        // $data = array(
+        //     'username' => "01834833973",
+        //     'password' => "TE47RSDM",
+        //     'number' => "$number",
+        //     'message' => "$text"
+        // );
+        // $ch = curl_init(); // Initialize cURL
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $smsresult = curl_exec($ch);
+        // $p = explode("|", $smsresult);
+        // $sendstatus = $p[0];
         // sms send end
         header("Location: login.php");
         $_SESSION["name"] = $name;

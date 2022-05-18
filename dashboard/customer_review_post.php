@@ -2,7 +2,7 @@
 require_once("./include/db.php");
 
 $customer_name = $_POST['customer_name'];
-$review_details = $_POST['review_details'];
+$review_details = htmlentities($_POST['review_details'], ENT_QUOTES);
 $customer_position = $_POST['customer_position'];
 $service_submit = $_POST['service_submit'];
 $id = date("Y") . time() . rand(1, 1000);

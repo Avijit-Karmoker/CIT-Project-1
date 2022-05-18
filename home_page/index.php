@@ -23,6 +23,29 @@ $skills = mysqli_query($db_connect, $db_skills_query);
 $db_reviews_query = "SELECT * FROM customer_reviews";
 $reviews = mysqli_query($db_connect, $db_reviews_query);
 
+//owner name from database
+$db_owner_name_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'owner_name'";
+$owner_name = mysqli_fetch_assoc(mysqli_query($db_connect, $db_owner_name_query))['settings_value'];
+
+//owner short info from database
+$db_owner_short_info_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'owner_short_info'";
+$owner_short_info = mysqli_fetch_assoc(mysqli_query($db_connect, $db_owner_short_info_query))['settings_value'];
+
+//about owner from database
+$db_about_owner_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'about_owner'";
+$about_owner = mysqli_fetch_assoc(mysqli_query($db_connect, $db_about_owner_query))['settings_value'];
+
+// owner_address
+$db_owner_address_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'owner_address'";
+$owner_address = mysqli_fetch_assoc(mysqli_query($db_connect, $db_owner_address_query))['settings_value'];
+
+// owner_phone
+$db_owner_phone_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'owner_phone'";
+$owner_phone = mysqli_fetch_assoc(mysqli_query($db_connect, $db_owner_phone_query))['settings_value'];
+
+// owner_email
+$db_owner_email_query = "SELECT `settings_value` FROM `settings` WHERE settings_name = 'owner_email'";
+$owner_email = mysqli_fetch_assoc(mysqli_query($db_connect, $db_owner_email_query))['settings_value'];
 ?>
 
 <!doctype html>
@@ -120,16 +143,15 @@ $reviews = mysqli_query($db_connect, $db_reviews_query);
             <div class="side-info mb-30">
                 <div class="contact-list mb-30">
                     <h4>Office Address</h4>
-                    <p>123/A, Miranda City Likaoli
-                        Prikano, Dope</p>
+                    <p><?=$owner_address?></p>
                 </div>
                 <div class="contact-list mb-30">
                     <h4>Phone Number</h4>
-                    <p>+0989 7876 9865 9</p>
+                    <p><?=$owner_phone?></p>
                 </div>
                 <div class="contact-list mb-30">
                     <h4>Email Address</h4>
-                    <p>info@example.com</p>
+                    <p><?=$owner_email?></p>
                 </div>
             </div>
             <div class="social-icon-right mt-20">
@@ -154,9 +176,8 @@ $reviews = mysqli_query($db_connect, $db_reviews_query);
                     <div class="col-xl-7 col-lg-6">
                         <div class="banner-content">
                             <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am Will Smith</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.6s">I'm Will Smith, professional web developer
-                                with long time experience in this field​.</p>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?=$owner_name?></h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.6s"><?=$owner_short_info?>.</p>
                             <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                 <ul>
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -194,11 +215,7 @@ $reviews = mysqli_query($db_connect, $db_reviews_query);
                             <h2>About Me</h2>
                         </div>
                         <div class="about-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sed repudiandae odit
-                                deserunt, quas
-                                quibusdam necessitatibus nesciunt eligendi esse sit non reprehenderit quisquam
-                                asperiores maxime
-                                blanditiis culpa vitae velit. Numquam!</p>
+                            <p><?=$about_owner?></p>
                             <h3>SKILLS:</h3>
                         </div>
                         <!-- Education Item -->

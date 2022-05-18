@@ -130,6 +130,9 @@ $profile_photo_name = mysqli_fetch_array($db_profile_photo_name)['profile_photo_
                         <a href="./customer_review.php"><i class="material-icons-two-tone">reviews</i>Customer
                             Review</a>
                     </li>
+                    <li class="<?= (end($page_name) == 'settings.php') ? 'active-page' : '' ?>">
+                        <a href="./settings.php"><i class="material-icons-two-tone">manage_accounts</i>Settings</a>
+                    </li>
                     <li>
                         <a href="widgets.html"><i class="material-icons-two-tone">widgets</i>Widgets</a>
                     </li>

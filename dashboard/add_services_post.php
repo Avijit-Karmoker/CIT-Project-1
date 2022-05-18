@@ -2,7 +2,7 @@
 session_start();
 // print_r($_POST);
 $service_name = $_POST['service_name'];
-$service_details = $_POST['service_details'];
+$service_details = htmlentities($_POST['service_details'], ENT_QUOTES);
 $service_icon = $_POST['service_icon'];
 $status = $_POST['status'];
 $db_connect = mysqli_connect('localhost', 'root', '', 'hw_7');
