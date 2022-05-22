@@ -1,5 +1,7 @@
 <?php
 session_start();
+// echo (new DateTime("now", new DateTimeZone('Asia/Dhaka')))->format('d-m-Y h:i:s A');
+// die();
 ?>
 <!DOCTYPE html>
 <html lang="en">

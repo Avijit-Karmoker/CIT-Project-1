@@ -1,10 +1,22 @@
-<?php require_once("./include/header.php"); ?>
+<?php
+require_once("./include/header.php");
+require '../vendor/autoload.php';
+
+use Carbon\Carbon;
+?>
 <div class="container">
     <div class="row">
         <div class="col">
             <div class="page-description">
                 <h1>Dashboard</h1>
                 <p><b><?= ($_SESSION['s_name']) ?></b>(<?= ($_SESSION['s_email']) ?>)</p>
+                <?php
+                $id = $_SESSION['s_id'];
+                $db_select_query = "SELECT * FROM sign_in_users WHERE id = $id";
+                $time = mysqli_fetch_assoc(mysqli_query($db_connect, $db_select_query))['created_at'];
+                echo Carbon::parse($time)->subHours(4)->diffForHumans();
+                ?>
+                <p></p>
             </div>
         </div>
     </div>
@@ -80,7 +92,8 @@
                     $users_count_from_db = mysqli_query($db_connect, $total_users);
                     $count_total_users = mysqli_fetch_assoc($users_count_from_db)['total_users'];
                     ?>
-                    <h5 class="card-title">New Users<span class="badge badge-success badge-style-light"><?= $count_total_users ?>
+                    <h5 class="card-title">New Users<span
+                            class="badge badge-success badge-style-light"><?= $count_total_users ?>
                             total</span></h5>
                 </div>
                 <div class="card-body">
@@ -92,21 +105,21 @@
                         <?php
                         foreach ($db_qureys as $info) :
                         ?>
-                            <li class="widget-list-item widget-list-item-red">
-                                <span class="widget-list-item-avatar">
-                                    <div class="avatar avatar-rounded">
-                                        <div class="avatar-title">CB</div>
-                                    </div>
+                        <li class="widget-list-item widget-list-item-red">
+                            <span class="widget-list-item-avatar">
+                                <div class="avatar avatar-rounded">
+                                    <div class="avatar-title">CB</div>
+                                </div>
+                            </span>
+                            <span class="widget-list-item-description">
+                                <a href="#" class="widget-list-item-description-title">
+                                    <?= $info['name'] ?>
+                                </a>
+                                <span class="widget-list-item-description-subtitle">
+                                    <?= $info['email'] ?>
                                 </span>
-                                <span class="widget-list-item-description">
-                                    <a href="#" class="widget-list-item-description-title">
-                                        <?= $info['name'] ?>
-                                    </a>
-                                    <span class="widget-list-item-description-subtitle">
-                                        <?= $info['email'] ?>
-                                    </span>
-                                </span>
-                            </li>
+                            </span>
+                        </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

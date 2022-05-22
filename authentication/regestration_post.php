@@ -1,6 +1,8 @@
 <?php
 session_start();
-// print_r($_POST);
+require '../vendor/autoload.php';
+
+use Carbon\Carbon;
 
 $name = $_POST['name'];
 $email = $_POST['email'];
@@ -121,7 +123,8 @@ if ($flag) {
         $_SESSION['email_valid_error'] = "Your email address has already exist";
         header('location: register.php');
     } else {
-        $insert_data = "INSERT INTO sign_in_users (name, email, password, phone_no) VALUES ('$name','$email','$encrypted_passowrd', '$phone_no')";
+        $current_date_time = Carbon::now("Asia/Dhaka")->locale('bd')->format('Y-m-d H:i:s');
+        $insert_data = "INSERT INTO sign_in_users (name, email, password, phone_no, created_at) VALUES ('$name','$email','$encrypted_passowrd', '$phone_no', '$current_date_time' )";
         mysqli_query($db_connect, $insert_data);
         // sms send start
         // $url = "http://66.45.237.70/api.php";
